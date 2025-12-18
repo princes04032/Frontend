@@ -1,4 +1,8 @@
-# Books
+# Frontend URL = https://princes04032.github.io/Frontend/
+
+# Backend URL = https://back-end-lmcrud.onrender.com
+
+## Books 
 + GET /api/books - Retrieve all books
 
 + GET /api/books/:id - Retrieve a specific book
