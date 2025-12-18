@@ -12,3 +12,21 @@
 + PUT /api/books/:id - Update a book
 
 + DELETE /api/books/:id - Delete a book
+
+## Members
++ GET /api/members - Retrieve all members
+
++ GET /api/members/:id - Retrieve a specific member
+
++ POST /api/members - Create a new member
+
++ DELETE /api/members/:id - Delete a member
+
+## Loans
++ GET /api/loans - Retrieve all loans
+
++ GET /api/loans/:id - Retrieve a specific loan
+
++ POST /api/loans - Create a new loan
+
++ DELETE /api/loans/:id - Delete a loan
