@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book"></i> Library Management System</h1>
+            <p class="subtitle">Manage books, members, and loans with ease</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab active" data-tab="books"><i class="fas fa-book"></i> Books</button>
+            <button class="tab" data-tab="members"><i class="fas fa-users"></i> Members</button>
+            <button class="tab" data-tab="loans"><i class="fas fa-exchange-alt"></i> Loans</button>
+            <button class="tab" data-tab="create"><i class="fas fa-plus-circle"></i> Create</button>
+        </nav>
+
+        <main>
+            <!-- Books Section -->
+            <section id="books" class="tab-content active">
+                <h2><i class="fas fa-book-open"></i> Book Collection</h2>
+                <div class="controls">
+                    <button id="refreshBooks" class="btn"><i class="fas fa-sync-alt"></i> Refresh Books</button>
+                    <input type="text" id="searchBooks" placeholder="Search books by title or author..." class="search-input">
+                </div>
+                <div class="table-container">
+                    <table id="booksTable">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Copies</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="booksBody">
+                            <!-- Books will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                <p class="loading" id="booksLoading">Loading books...</p>
+            </section>
+
+            <!-- Members Section -->
+            <section id="members" class="tab-content">
+                <h2><i class="fas fa-user-friends"></i> Library Members</h2>
+                <div class="controls">
+                    <button id="refreshMembers" class="btn"><i class="fas fa-sync-alt"></i> Refresh Members</button>
+                </div>
+                <div class="table-container">
+                    <table id="membersTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Age</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersBody">
+                            <!-- Members will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                <p class="loading" id="membersLoading">Loading members...</p>
+            </section>
+
+            <!-- Loans Section -->
+            <section id="loans" class="tab-content">
+                <h2><i class="fas fa-exchange-alt"></i> Active Loans</h2>
+                <div class="controls">
+                    <button id="refreshLoans" class="btn"><i class="fas fa-sync-alt"></i> Refresh Loans</button>
+                </div>
+                <div class="table-container">
+                    <table id="loansTable">
+                        <thead>
+                            <tr>
+                                <th>Book</th>
+                                <th>Member</th>
+                                <th>Loan Date</th>
+                                <th>Return Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="loansBody">
+                            <!-- Loans will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                <p class="loading" id="loansLoading">Loading loans...</p>
+            </section>
+
+            <!-- Create Section -->
+            <section id="create" class="tab-content">
+                <h2><i class="fas fa-plus-circle"></i> Create New Record</h2>
+                <div class="create-forms">
+                    <div class="form-container">
+                        <h3><i class="fas fa-book"></i> Add New Book</h3>
+                        <form id="createBookForm">
+                            <div class="form-group">
+                                <label for="bookTitle">Title *</label>
+                                <input type="text" id="bookTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookAuthor">Author *</label>
+                                <input type="text" id="bookAuthor" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookISBN">ISBN *</label>
+                                <input type="text" id="bookISBN" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookCopies">Copies</label>
+                                <input type="number" id="bookCopies" value="1" min="1">
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Add Book</button>
+                        </form>
+                    </div>
+
+                    <div class="form-container">
+                        <h3><i class="fas fa-user-plus"></i> Add New Member</h3>
+                        <form id="createMemberForm">
+                            <div class="form-group">
+                                <label for="memberName">Name *</label>
+                                <input type="text" id="memberName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberEmail">Email *</label>
+                                <input type="email" id="memberEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberAge">Age *</label>
+                                <input type="number" id="memberAge" required min="1">
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Add Member</button>
+                        </form>
+                    </div>
+
+                    <div class="form-container">
+                        <h3><i class="fas fa-exchange-alt"></i> Create New Loan</h3>
+                        <form id="createLoanForm">
+                            <div class="form-group">
+                                <label for="loanBook">Book *</label>
+                                <select id="loanBook" required>
+                                    <option value="">Select a book</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="loanMember">Member *</label>
+                                <select id="loanMember" required>
+                                    <option value="">Select a member</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Create Loan</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal for Edit/Delete -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Library Management System &copy; 2023 | 
+                <span id="apiStatus">Connecting to backend...</span>
+            </p>
+            <p class="api-info">Backend API: <span id="apiUrl">Not configured</span></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
